@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { Button, Form } from 'react-bootstrap';
 import Tracker from '../../assests/images/Icon.png';
@@ -8,14 +9,31 @@ import Language from '../Language/Language';
 
 const Login = () => {
   const { t } = useTranslation();
-
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const emailHandler = (event: any) => {
+    setEmail(event.target.value);
+  };
+  const passwordHandler = (event: any) => {
+    setPassword(event.target.value);
+  };
+  const onSubmit = (event: any) => {
+    event.preventDefault();
+    axios
+      .post('https://hu-22-angular-mockapi-urtjok3rza-wl.a.run.app/auth/login', {
+        email: email,
+        password: password
+      })
+      .then((response: any) => console.log(response.data['message']))
+      .catch((error: any) => console.log(error.response.data['error']));
+  };
   return (
     <div className={classes.login}>
       <div className={classes.sidebar}>
         <img src={Tracker} className={classes.tracker} />
         <img src={SideImg} className={classes.tracker} />
+        <Language />
         <div>
-          <Language />
           {/* <Dropdown>
             <Dropdown.Toggle variant="dark" id="dropdown-basic" className={classes.dropdown}>
               {t('LANGUAGE')}
@@ -36,15 +54,19 @@ const Login = () => {
         </div>
       </div>
       <div className={classes['login_section']}>
-        <Form className={classes.form}>
+        <Form className={classes.form} onSubmit={onSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>{t('Email')}</Form.Label>
-            <Form.Control type="email" placeholder={t('Enter your email address')} />
+            <Form.Control
+              type="email"
+              placeholder={t('Enter your email address')}
+              onChange={emailHandler}
+            />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>{t('Password')}</Form.Label>
-            <Form.Control type="password" placeholder="**********" />
+            <Form.Control type="password" placeholder="**********" onChange={passwordHandler} />
           </Form.Group>
           <Button variant="dark" className={classes.button} type="submit">
             {t('LOGIN')}
