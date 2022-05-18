@@ -1,0 +1,23 @@
+.sidebar {
+  position: fixed;
+  width: 280px;
+  height: 972px;
+  left: 0px;
+  top: 0px;
+
+  background: #1d262d;
+}
+
+/* Sidebar links */
+.sidebar a {
+  color: rgb(243, 234, 234);
+  padding: 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  background: #28343e;
+  width: 90%;
+  display: flex;
+  margin: 10px auto 0 auto;
+  font-size: 14px;
+  font-weight: 500;
+}

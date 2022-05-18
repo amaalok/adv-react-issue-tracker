@@ -1,17 +1,23 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-import reportWebVitals from "./reportWebVitals";
+import React, { Suspense } from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import reportWebVitals from './reportWebVitals';
+import './i18n';
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+const loadingMarkup = (
+  <div className="py-4 text-center">
+    <h2>Loading..</h2>
+  </div>
 );
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Suspense fallback={loadingMarkup}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Suspense>
 );
 
 // If you want your app to work offline and load faster, you can change

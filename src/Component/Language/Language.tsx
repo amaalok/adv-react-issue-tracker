@@ -15,9 +15,9 @@ const languages = [
     country_code: 'gb'
   },
   {
-    code: 'ar',
-    name: 'العربية',
-    country_code: 'sa'
+    code: 'fr',
+    name: 'Français',
+    country_code: 'fr'
   }
 ];
 

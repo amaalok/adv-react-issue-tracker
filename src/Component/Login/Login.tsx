@@ -28,7 +28,7 @@ const Login = () => {
       })
       .then((response: any) => {
         console.log(response);
-        navigate('/create_issue');
+        navigate('/dashboard');
       })
       .catch((error: any) => {
         console.log(error.response.data['error']);

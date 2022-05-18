@@ -1,19 +1,20 @@
 import React from 'react';
-import classes from './Issue.module.css';
 import NavBar from '../NavBar/NavBar';
 import Sidebar from '../Sidebar/Sidebar';
+import classes from './Dashboard.module.css';
 
-const Issue = () => {
+const Dashboard = () => {
   return (
     <React.Fragment>
       <Sidebar />
-      <div>
+      <div className={classes.content}>
         <NavBar />
-        <div className={classes.content}>
-          <h1>Create User Stories/Tasks/Bugs</h1>
+        <div className={classes['text-home']}>
+          <h1>Welcome to Tracker</h1>
         </div>
       </div>
     </React.Fragment>
   );
 };
-export default Issue;
+
+export default Dashboard;
