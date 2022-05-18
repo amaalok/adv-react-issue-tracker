@@ -1,5 +1,4 @@
 .text-home {
-  position: fixed;
   height: 40px;
   left: 320px;
   top: 134px;
@@ -12,4 +11,24 @@
   letter-spacing: 0.25px;
 
   color: #1d262d;
+  margin: 5% 2%;
+}
+.dashboard-container {
+  display: flex;
+}
+.button {
+  width: 10%;
+  height: 90%;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2%;
+}
+.select {
+  width: 40%;
+  height: 52px;
+  background: #f7f8fa;
+  border: none;
+  border-bottom: 1px solid #000;
 }

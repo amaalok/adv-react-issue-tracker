@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const Protected = (props: any) => {
-  if (props.isLoggedIn !== true) {
+  if (props.isLoggedIn !== 'true') {
     return <Navigate to="/" replace />;
   }
 

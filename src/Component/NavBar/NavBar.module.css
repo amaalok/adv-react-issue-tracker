@@ -1,9 +1,6 @@
 .header {
-  position: fixed;
-  width: 85%;
+  width: 80vw;
   height: 80px;
-  left: 280px;
-  top: 0px;
 
   background: #d2d7e0;
 }

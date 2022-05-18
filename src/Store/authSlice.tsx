@@ -8,9 +8,11 @@ const authSlice = createSlice({
   reducers: {
     login(state) {
       state.isAuthenticated = true;
+      localStorage.setItem('isAuth', 'true');
     },
     logout(state) {
       state.isAuthenticated = false;
+      localStorage.setItem('isAuth', 'false');
     }
   }
 });

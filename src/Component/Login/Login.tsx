@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -12,8 +12,10 @@ import classes from './Login.module.css';
 
 const Login = () => {
   const dispatch = useDispatch();
+  // const isAuth = useSelector((state: any) => state.auth.isAuthenticated);
   const { t } = useTranslation();
   const navigate = useNavigate();
+  // const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const emailHandler = (event: any) => {
@@ -24,46 +26,31 @@ const Login = () => {
   };
   const onSubmit = (event: any) => {
     event.preventDefault();
+    console.log('heko');
     axios
       .post('https://hu-22-angular-mockapi-urtjok3rza-wl.a.run.app/auth/login', {
         email: email,
         password: password
       })
       .then((response: any) => {
-        console.log(response);
+        console.log(response.data['userId']);
+        localStorage.setItem('userId', response.data['userId']);
+        window.location.href = '/dashboard';
         dispatch(authActions.login());
-        navigate('/dashboard');
       })
       .catch((error: any) => {
         console.log(error.response.data['error']);
         navigate('/');
       });
+    console.log('helo');
   };
   return (
     <div className={classes.login}>
       <div className={classes.sidebar}>
-        <img src={Tracker} className={classes.tracker} />
-        <img src={SideImg} className={classes.tracker} />
+        <img src={Tracker} className={classes.tracker} alt="" />
+        <img src={SideImg} className={classes.tracker} alt="" />
         <Language />
-        <div>
-          {/* <Dropdown>
-            <Dropdown.Toggle variant="dark" id="dropdown-basic" className={classes.dropdown}>
-              {t('LANGUAGE')}
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {languages.map(({ code, name, country_code }) => (
-                <Dropdown.Item key={country_code}>
-                <button
-                  className="dropdown-item"
-                  onClick={() => i18next.changeLanguage(code)}
-                  key={country_code}>
-                  {name}
-                </button>
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown> */}
-        </div>
+        <div></div>
       </div>
       <div className={classes['login_section']}>
         <Form className={classes.form} onSubmit={onSubmit}>
