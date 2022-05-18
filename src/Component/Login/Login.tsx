@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Form } from 'react-bootstrap';
 import Tracker from '../../assests/images/Icon.png';
 import SideImg from '../../assests/images/sideImg.png';
-import classes from './Login.module.css';
 import Language from '../Language/Language';
+import { authActions } from '../../Store/authSlice';
+import classes from './Login.module.css';
 
 const Login = () => {
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -28,6 +31,7 @@ const Login = () => {
       })
       .then((response: any) => {
         console.log(response);
+        dispatch(authActions.login());
         navigate('/dashboard');
       })
       .catch((error: any) => {
