@@ -1,31 +1,29 @@
-.h1 {
+.text-home {
   height: 40px;
+  left: 320px;
+  top: 134px;
+
   font-family: 'Roboto';
   font-style: normal;
   font-weight: bold;
   font-size: 34px;
   line-height: 40px;
   letter-spacing: 0.25px;
+
   color: #1d262d;
+  margin: 5% 2%;
 }
-.content {
-  margin-left: 3%;
-  margin-top: 5%;
-}
-.issue-container {
+.dashboard-container {
   display: flex;
+}
+.button {
+  width: 10%;
+  height: 90%;
 }
 .input-container {
   display: flex;
   flex-direction: column;
   margin-top: 2%;
-}
-.summary {
-  width: 80%;
-  height: 52px;
-  background: #f7f8fa;
-  border: none;
-  border-bottom: 1px solid #000;
 }
 .select {
   width: 40%;

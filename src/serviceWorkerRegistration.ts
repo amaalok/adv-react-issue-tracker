@@ -19,13 +19,17 @@ const isLocalhost = Boolean(
 );
 
 type Config = {
+  // eslint-disable-next-line no-unused-vars
   onSuccess?: (registration: ServiceWorkerRegistration) => void;
+  // eslint-disable-next-line no-unused-vars
   onUpdate?: (registration: ServiceWorkerRegistration) => void;
 };
 
 export function register(config?: Config) {
+  // eslint-disable-next-line no-undef
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
+    // eslint-disable-next-line no-undef
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
     if (publicUrl.origin !== window.location.origin) {
       // Our service worker won't work if PUBLIC_URL is on a different origin
@@ -35,6 +39,7 @@ export function register(config?: Config) {
     }
 
     window.addEventListener('load', () => {
+      // eslint-disable-next-line no-undef
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 
       if (isLocalhost) {
@@ -104,7 +109,7 @@ function registerValidSW(swUrl: string, config?: Config) {
 function checkValidServiceWorker(swUrl: string, config?: Config) {
   // Check if the service worker can be found. If it can't reload the page.
   fetch(swUrl, {
-    headers: { 'Service-Worker': 'script' },
+    headers: { 'Service-Worker': 'script' }
   })
     .then((response) => {
       // Ensure service worker exists, and that we really are getting a JS file.
