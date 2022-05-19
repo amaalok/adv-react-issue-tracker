@@ -1,15 +1,7 @@
 .dropdown-custom {
   width: 10%;
 }
-.language-false-container {
-  z-index: 100;
-  margin-top: 165%;
-}
-.language-true-container {
-  z-index: 100;
-  margin-top: 50%;
-}
-#dropdown-basic-button {
+#dropdown-true-button {
   display: flex;
   align-items: center;
   width: 950%;
@@ -17,4 +9,15 @@
   background: #28343e;
   border: none;
   padding: 25% 12%;
+  margin-top: 230%;
+}
+#dropdown-false-button {
+  display: flex;
+  align-items: center;
+  width: 950%;
+  margin-left: 20%;
+  background: #28343e;
+  border: none;
+  padding: 25% 12%;
+  margin-top: 1050%;
 }
