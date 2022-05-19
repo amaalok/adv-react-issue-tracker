@@ -21,7 +21,7 @@ const languages = [
   }
 ];
 
-function Language() {
+const Language = (props: any) => {
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -29,13 +29,17 @@ function Language() {
   }, [t]);
 
   return (
-    <div className={classes['language-component-container']}>
+    <div
+      className={
+        props.flag
+          ? `${classes['language-true-container']}`
+          : `${classes['language-false-container']}`
+      }>
       <DropdownButton
         variant="secondary"
-        id="dropdown-basic-button"
-        title={t('language')}
+        id={classes['dropdown-basic-button']}
+        title={t('LANGUAGE')}
         className={classes['dropdown-custom']}>
-        {/* <Dropdown.ItemText>{t("language")}</Dropdown.ItemText> */}
         {languages.map(({ code, name, country_code }) => (
           <Dropdown.Item
             as="button"
@@ -47,6 +51,6 @@ function Language() {
       </DropdownButton>
     </div>
   );
-}
+};
 
 export default Language;
