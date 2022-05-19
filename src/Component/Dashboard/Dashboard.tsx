@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NavBar from '../NavBar/NavBar';
 import Tracker from '../../assests/images/Icon.png';
-import Card from '../Card/Card';
 import classes from './Dashboard.module.css';
 import { Link } from 'react-router-dom';
 import EmptyProject from '../EmptyProject/EmptyProject';
 import IssueCards from '../IssueCard/IssueCards';
+import { useTranslation } from 'react-i18next';
+import Language from '../Language/Language';
 
 const Dashboard = () => {
+  const { t } = useTranslation();
   const [allProjects, setAllProjects] = useState([]);
   const [user, setUser] = useState([]);
   const [project, setProject] = useState('');
@@ -68,11 +70,12 @@ const Dashboard = () => {
           <img src={Tracker} className={classes.sideImg} alt="" />
           <div className={classes['link-div']}>
             <Link to="/dashboard" className={classes.active}>
-              <p className={classes.link}>PROJECT BOARD</p>
+              <p className={classes.link}>{t('PROJECT BOARD')}</p>
             </Link>
-            <Link to="/create_issue">CREATE ISSUES</Link>
-            <Link to="/create_issue">CREATE PROJECTS</Link>
+            <Link to="/create_issue">{t('CREATE ISSUES')}</Link>
+            <Link to="/create_issue">{t('CREATE PROJECTS')}</Link>
           </div>
+          <Language props={false} />
         </div>
         <div className={classes.content}>
           <NavBar flag={true} />
@@ -80,13 +83,13 @@ const Dashboard = () => {
           {allProjects.length > 0 && (
             <React.Fragment>
               <div className={classes['text-home']}>
-                <h1>Project Details</h1>
-                <button className={classes.button}>VIEW INSIGHT</button>
+                <h1>{t('Project Details')}</h1>
+                <button className={classes.button}>{t('VIEW INSIGHT')}</button>
               </div>
 
               <div className={classes['project']}>
                 <div className={classes['input-container']}>
-                  <label htmlFor={classes.select}>Project Name</label>
+                  <label htmlFor={classes.select}>{t('Project Name')}</label>
                   <select
                     className={classes.select}
                     name="Priority"
@@ -94,7 +97,7 @@ const Dashboard = () => {
                       setProject(event.target.value);
                     }}>
                     <option selected disabled hidden>
-                      Select
+                      {t('Select')}
                     </option>
                     {allProjects.map((project) => (
                       <option key={project['projectID']} value={project['projectID']}>
@@ -104,7 +107,7 @@ const Dashboard = () => {
                   </select>
                 </div>
                 <div className={classes['input-container']}>
-                  <label htmlFor={classes.select}>Project Owner</label>
+                  <label htmlFor={classes.select}>{'Project Owner'}</label>
                   <input type="text" className={classes.owner} name="project Owner" value={user} />
                 </div>
               </div>
@@ -117,7 +120,7 @@ const Dashboard = () => {
                     }}
                     name="Priority">
                     <option selected value="">
-                      None
+                      {t('None')}
                     </option>
                     {assignees.map((user) => (
                       <option key={user['id']} value={user['id']}>
@@ -125,7 +128,7 @@ const Dashboard = () => {
                       </option>
                     ))}
                   </select>
-                  <label htmlFor={classes.select}>Filter Asignee</label>
+                  <label htmlFor={classes.select}>{t('Filter Asignee')}</label>
                 </div>
                 <div className={classes['input-container']} id={classes.priority}>
                   <select
@@ -135,13 +138,13 @@ const Dashboard = () => {
                       setFpriority(event.target.value);
                     }}>
                     <option selected value="">
-                      None
+                      {t('None')}
                     </option>
-                    <option value="1">LOW</option>
-                    <option value="2">MEDIUM</option>
-                    <option value="3">HIGH</option>
+                    <option value="1">{'LOW'}</option>
+                    <option value="2">{'MEDIUM'}</option>
+                    <option value="3">{'HIGH'}</option>
                   </select>
-                  <label htmlFor={classes.select}>Filter Priority</label>
+                  <label htmlFor={classes.select}>{t('Filter Priority')}</label>
                 </div>
               </div>
               <IssueCards list={issues} filterbyassignee={fassign} filterbypriority={fpriority} />

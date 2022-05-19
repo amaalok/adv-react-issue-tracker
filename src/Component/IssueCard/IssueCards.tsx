@@ -1,9 +1,9 @@
-import Card from '../Card/Card';
 import React from 'react';
+import Card from '../Card/Card';
 import './IssueCard.css';
 import { Issue } from '../Card/Card';
-// import { useData } from "../dataContext";
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   list: Issue[];
@@ -11,13 +11,12 @@ type Props = {
   filterbyassignee: string;
 };
 
-export default function IssueCards({ list, filterbypriority, filterbyassignee }: Props) {
-  //   const [list, setlist] = useState<Issue[]>([]);
+const IssueCards = ({ list, filterbypriority, filterbyassignee }: Props) => {
+  const { t } = useTranslation();
   const [todoList, settodoList] = useState<Issue[]>([]);
   const [doneList, setdoneList] = useState<Issue[]>([]);
   const [inProgressList, setinProgressList] = useState<Issue[]>([]);
   const [blockedList, setblockedList] = useState<Issue[]>([]);
-  //   const { issuelist, searchlist } = useData();
   const [filter1, setFilter1] = useState([] as Issue[]);
   const [filter2, setFilter2] = useState([] as Issue[]);
   useEffect(() => {
@@ -48,28 +47,28 @@ export default function IssueCards({ list, filterbypriority, filterbyassignee }:
   return (
     <div className="status">
       <div className="issue-list">
-        <p className="type">TO DO</p>
+        <p className="type">{t('TO DO')}</p>
         {todoList &&
           todoList.map((issue: Issue) => {
             return <Card key={issue.id} issue={issue} />;
           })}
       </div>
       <div className="issue-list">
-        <p className="type">DEVELOPMENT</p>
+        <p className="type">{t('DEVELOPMENT')}</p>
         {inProgressList &&
           inProgressList.map((issue) => {
             return <Card key={issue.id} issue={issue} />;
           })}
       </div>
       <div className="issue-list">
-        <p className="type">TESTING</p>
+        <p className="type">{t('TESTING')}</p>
         {doneList &&
           doneList.map((issue) => {
             return <Card key={issue.id} issue={issue} />;
           })}
       </div>
       <div className="issue-list">
-        <p className="type">COMPLETED</p>
+        <p className="type">{t('COMPLETED')}</p>
         {blockedList &&
           blockedList.map((issue) => {
             return <Card key={issue.id} issue={issue} />;
@@ -77,4 +76,5 @@ export default function IssueCards({ list, filterbypriority, filterbyassignee }:
       </div>
     </div>
   );
-}
+};
+export default IssueCards;

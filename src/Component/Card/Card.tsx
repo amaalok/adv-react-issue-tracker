@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import profile from '../../assests/images/profile.png';
 import classes from './Card.module.css';
 export interface Issue {
@@ -29,6 +30,8 @@ interface Props {
 }
 
 const Card = (props: any) => {
+  const { t } = useTranslation();
+
   let priorityType = 'high';
   if (props.issue.priority === 2) priorityType = 'medium';
   if (props.issue.priority === 1) priorityType = 'low';
@@ -36,7 +39,9 @@ const Card = (props: any) => {
     <React.Fragment>
       <div className={classes['issue-container']}>
         <div className={classes['issue-details']}>
-          <h5>ID: {props.issue.id}</h5>
+          <h5>
+            {t('ID')}: {props.issue.id}
+          </h5>
           <h5>{props.issue.createdOn.split('T')[0].split('-').reverse().join('-')}</h5>
         </div>
         <div className={classes['issue-description']}>
@@ -48,7 +53,7 @@ const Card = (props: any) => {
             <img src={profile} alt="" /> {props.issue.assignee.name}
           </div>
           <div className={classes['issue-priority']}>
-            <p className={classes.priority}>Priority</p>
+            <p className={classes.priority}>{t('Priority')}</p>
             <p
               className={
                 priorityType === 'high'

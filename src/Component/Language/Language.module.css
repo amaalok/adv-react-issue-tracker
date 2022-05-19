@@ -1,9 +1,20 @@
 .dropdown-custom {
   width: 10%;
 }
-
-.language-component-container {
-  top: 1%;
-  left: 90%;
+.language-false-container {
   z-index: 100;
+  margin-top: 165%;
+}
+.language-true-container {
+  z-index: 100;
+  margin-top: 50%;
+}
+#dropdown-basic-button {
+  display: flex;
+  align-items: center;
+  width: 950%;
+  margin-left: 20%;
+  background: #28343e;
+  border: none;
+  padding: 25% 12%;
 }

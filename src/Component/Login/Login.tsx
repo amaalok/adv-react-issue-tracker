@@ -49,8 +49,7 @@ const Login = () => {
       <div className={classes.sidebar}>
         <img src={Tracker} className={classes.tracker} alt="" />
         <img src={SideImg} className={classes.tracker} alt="" />
-        <Language />
-        <div></div>
+        <Language flag={true} />
       </div>
       <div className={classes['login_section']}>
         <Form className={classes.form} onSubmit={onSubmit}>
