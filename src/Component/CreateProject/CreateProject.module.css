@@ -1,0 +1,38 @@
+.sidebar {
+  width: 30%;
+  height: 100vh;
+  background: #1d262d;
+  padding-top: 5%;
+}
+
+.sidebar a {
+  color: rgb(243, 234, 234);
+  padding: 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  background: #28343e;
+  width: 90%;
+  display: flex;
+  margin: 10px auto 0 auto;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 5%;
+}
+.sideImg {
+  height: 50px;
+  width: 200px;
+  margin: 0 auto;
+  display: flex;
+}
+.active {
+  border-left: 5px solid #fe7912;
+}
+.link {
+  color: #fe7912;
+  font-size: 16px;
+  margin-bottom: -2px;
+  letter-spacing: 1px;
+}
+.project-container {
+  display: flex;
+}

@@ -31,13 +31,16 @@ const Language = (props: any) => {
   return (
     <div
       className={
-        props.flag
-          ? `${classes['language-true-container']}`
-          : `${classes['language-false-container']}`
+        'language-container'
+        // props.flag
+        //   ? `${classes['language-container']}`
+        //   : `${classes['language-false-container']}`
       }>
       <DropdownButton
         variant="secondary"
-        id={classes['dropdown-basic-button']}
+        id={
+          props.flag ? `${classes['dropdown-true-button']}` : `${classes['dropdown-false-button']}`
+        }
         title={t('LANGUAGE')}
         className={classes['dropdown-custom']}>
         {languages.map(({ code, name, country_code }) => (

@@ -12,32 +12,34 @@ const Issue = () => {
   const navigate = useNavigate();
   const [allProjects, setAllProjects] = useState([]);
   const [allUser, setAllUser] = useState([]);
-  // const [summaryValidate, setSummaryValidate] = useState(true);
+  const [summary, setSummary] = useState('');
+  const [type, setType] = useState('');
+  const [project, setProject] = useState('');
+  const [description, setDescription] = useState('');
+  const [priority, setPriority] = useState('');
+  const [assignee, setAssignee] = useState('');
+  const [tags, setTags] = useState('');
+  const [sprint, setSprint] = useState('');
+  const [story, setStory] = useState('');
+
   const headers: any = {
     userID: localStorage.getItem('userId') !== null ? localStorage.getItem('userId') : '1'
   };
-  function handleSubmit(event: any) {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
-    const data = new FormData(event.target);
-    // const summary: any = data.get('Summary');
-    // if (summary.length < 5) {
-    //   setSummaryValidate(false);
-    //   return;
-    // }
-    // setSummaryValidate(true);
-
     const issueData = {
-      summary: data.get('Summary'),
-      type: data.get('Type'),
-      projectID: data.get('Project'),
-      description: data.get('Description'),
-      priority: data.get('Priority'),
+      summary,
+      type,
+      projectID: project,
+      description,
+      priority,
       status: 1,
-      assignee: data.get('Asignee'),
-      tags: [data.get('Tags')],
-      sprint: data.get('Sprint'),
-      storyPoint: data.get('Story')
+      assignee,
+      tags: [tags],
+      sprint,
+      storyPoint: story
     };
+    console.log(issueData);
     axios
       .post('https://hu-22-angular-mockapi-urtjok3rza-wl.a.run.app/issue', issueData, {
         headers: headers
@@ -49,7 +51,19 @@ const Issue = () => {
       .catch((error: any) => {
         console.log(error.response);
       });
-  }
+  };
+  const handleReset = (event: any) => {
+    event.preventDefault();
+    setSummary('');
+    setType('');
+    setProject('');
+    setDescription('');
+    setPriority('');
+    setAssignee('');
+    setTags('');
+    setSprint('');
+    setStory('');
+  };
 
   useEffect(() => {
     async function getRes() {
@@ -83,7 +97,7 @@ const Issue = () => {
             <Link to="/create_issue" className={classes.active}>
               <p className={classes.link}>{t('CREATE ISSUES')}</p>
             </Link>
-            <Link to="/create_issue">{t('CREATE PROJECTS')}</Link>
+            <Link to="/create_project">{t('CREATE PROJECTS')}</Link>
           </div>
           <Language flag={false} />
         </div>
@@ -91,7 +105,7 @@ const Issue = () => {
           <NavBar flag={false} />
           <div className={classes.content}>
             <h1 className={classes.h1}>{t('Create User Stories/Tasks/Bugs')}</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} onReset={handleReset}>
               <div className={classes['input-container']}>
                 <label htmlFor={classes.summary}>{t('Summary')}</label>
                 <input
@@ -99,15 +113,20 @@ const Issue = () => {
                   placeholder={t('Add Summary')}
                   className={classes.summary}
                   name="Summary"
+                  value={summary}
+                  onChange={(event) => setSummary(event.target.value)}
                 />
-                {/* {!summaryValidate && <p>jbdsibsdib</p>} */}
               </div>
               <div className={classes['select-input']}>
                 <div className={classes['input-container']}>
                   <label htmlFor={classes.select}>{t('Type')}</label>
-                  <select className={classes.select} name="Type">
-                    <option disabled selected hidden>
-                      {t('Select')}
+                  <select
+                    className={classes.select}
+                    name="Type"
+                    value={type}
+                    onChange={(event) => setType(event.target.value)}>
+                    <option disabled selected hidden value="">
+                      Select
                     </option>
                     <option value="1">{t('BUG')}</option>
                     <option value="2">{t('TASK')}</option>
@@ -116,8 +135,12 @@ const Issue = () => {
                 </div>
                 <div className={classes['input-container']}>
                   <label htmlFor={classes.select}>{t('Project')}</label>
-                  <select className={classes.select} name="Project">
-                    <option selected style={{ display: 'none' }}>
+                  <select
+                    className={classes.select}
+                    name="Project"
+                    value={project}
+                    onChange={(event) => setProject(event.target.value)}>
+                    <option selected disabled hidden value="" style={{ display: 'none' }}>
                       {t('Select')}
                     </option>
                     {allProjects.map((project) => (
@@ -136,15 +159,21 @@ const Issue = () => {
                   name="Description"
                   className={classes.description}
                   placeholder={t('Write description')}
+                  value={description}
+                  onChange={(event) => setDescription(event.target.value)}
                 />
               </div>
 
               <div className={classes['select-input']}>
                 <div className={classes['input-container']}>
                   <label htmlFor={classes.select}>{t('Priority')}</label>
-                  <select className={classes.select} name="Priority">
-                    <option selected disabled hidden>
-                      Select
+                  <select
+                    className={classes.select}
+                    name="Priority"
+                    value={priority}
+                    onChange={(event) => setPriority(event.target.value)}>
+                    <option selected disabled hidden value="">
+                      {t('Select')}
                     </option>
                     <option value="1">LOW</option>
                     <option value="2">MEDIUM</option>
@@ -154,8 +183,12 @@ const Issue = () => {
 
                 <div className={classes['input-container']}>
                   <label htmlFor={classes.select}>{t('Asignee')}</label>
-                  <select className={classes.select} name="Asignee">
-                    <option selected disabled hidden>
+                  <select
+                    className={classes.select}
+                    name="Asignee"
+                    value={assignee}
+                    onChange={(event) => setAssignee(event.target.value)}>
+                    <option selected disabled hidden value="">
                       {t('Select')}
                     </option>
                     {allUser.map((user) => (
@@ -169,8 +202,12 @@ const Issue = () => {
               <div className={classes['select-input']}>
                 <div className={classes['input-container']}>
                   <label htmlFor={classes.select}>{t('Tags')}</label>
-                  <select className={classes.select} name="Tags">
-                    <option selected disabled hidden>
+                  <select
+                    className={classes.select}
+                    name="Tags"
+                    value={tags}
+                    onChange={(event) => setTags(event.target.value)}>
+                    <option selected disabled hidden value="">
                       {t('Select')}
                     </option>
                     <option>{t('React')}</option>
@@ -181,8 +218,12 @@ const Issue = () => {
 
                 <div className={classes['input-container']}>
                   <label htmlFor={classes.select}>{t('Sprint')}</label>
-                  <select className={classes.select} name="Sprint">
-                    <option selected disabled hidden>
+                  <select
+                    className={classes.select}
+                    name="Sprint"
+                    value={sprint}
+                    onChange={(event) => setSprint(event.target.value)}>
+                    <option selected disabled hidden value="">
                       {t('Select')}
                     </option>
                     <option>React_1</option>
@@ -200,11 +241,17 @@ const Issue = () => {
                   max="12"
                   className={classes.story}
                   placeholder="1,2,3..."
+                  value={story}
+                  onChange={(event) => setStory(event.target.value)}
                 />
               </div>
               <div className={classes.button}>
-                <button className={classes.reset}>{t('RESET')}</button>
-                <button className={classes.create}>{t('CREATE')}</button>
+                <button type="reset" className={classes.reset}>
+                  {t('RESET')}
+                </button>
+                <button type="submit" className={classes.create}>
+                  {t('CREATE')}
+                </button>
               </div>
             </form>
           </div>

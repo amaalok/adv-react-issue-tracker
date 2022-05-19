@@ -13,7 +13,7 @@ const EmptyProject = () => {
       </div>
       <p className={classes.paragraph}>
         {t("Seems like you haven'nt created any project yet.")}
-        <Link to="/create_issue" className={classes.link}>
+        <Link to="/create_project" className={classes.link}>
           <p> {t('Click here')} </p>
         </Link>
         {t('to onboard a new project.')}

@@ -73,7 +73,7 @@ const Dashboard = () => {
               <p className={classes.link}>{t('PROJECT BOARD')}</p>
             </Link>
             <Link to="/create_issue">{t('CREATE ISSUES')}</Link>
-            <Link to="/create_issue">{t('CREATE PROJECTS')}</Link>
+            <Link to="/create_project">{t('CREATE PROJECTS')}</Link>
           </div>
           <Language props={false} />
         </div>

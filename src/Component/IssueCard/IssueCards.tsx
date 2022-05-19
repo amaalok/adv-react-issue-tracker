@@ -1,9 +1,9 @@
 import React from 'react';
 import Card from '../Card/Card';
-import './IssueCard.css';
 import { Issue } from '../Card/Card';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import classes from './IssueCard.module.css';
 
 type Props = {
   list: Issue[];
@@ -45,30 +45,30 @@ const IssueCards = ({ list, filterbypriority, filterbyassignee }: Props) => {
     console.log(filter2);
   }, [filterbypriority]);
   return (
-    <div className="status">
-      <div className="issue-list">
-        <p className="type">{t('TO DO')}</p>
+    <div className={classes.status}>
+      <div className={classes['issue-list']}>
+        <p className={classes.type}>{t('TO DO')}</p>
         {todoList &&
           todoList.map((issue: Issue) => {
             return <Card key={issue.id} issue={issue} />;
           })}
       </div>
-      <div className="issue-list">
-        <p className="type">{t('DEVELOPMENT')}</p>
+      <div className={classes['issue-list']}>
+        <p className={classes.type}>{t('DEVELOPMENT')}</p>
         {inProgressList &&
           inProgressList.map((issue) => {
             return <Card key={issue.id} issue={issue} />;
           })}
       </div>
-      <div className="issue-list">
-        <p className="type">{t('TESTING')}</p>
+      <div className={classes['issue-list']}>
+        <p className={classes.type}>{t('TESTING')}</p>
         {doneList &&
           doneList.map((issue) => {
             return <Card key={issue.id} issue={issue} />;
           })}
       </div>
-      <div className="issue-list">
-        <p className="type">{t('COMPLETED')}</p>
+      <div className={classes['issue-list']}>
+        <p className={classes.type}>{t('COMPLETED')}</p>
         {blockedList &&
           blockedList.map((issue) => {
             return <Card key={issue.id} issue={issue} />;

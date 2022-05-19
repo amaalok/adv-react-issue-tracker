@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './Component/Login/Login';
 import Dashboard from './Component/Dashboard/Dashboard';
 import Issue from './Component/Issue/Issue';
+import CreateProject from './Component/CreateProject/CreateProject';
 import Protected from './Component/ProtectedRoute/ProtectedRoute';
 
 function App() {
@@ -36,6 +37,14 @@ function App() {
             element={
               <Protected isLoggedIn={localStorage.getItem('isAuth')}>
                 <Issue />
+              </Protected>
+            }
+          />
+          <Route
+            path="/create_project"
+            element={
+              <Protected isLoggedIn={localStorage.getItem('isAuth')}>
+                <CreateProject />
               </Protected>
             }
           />
