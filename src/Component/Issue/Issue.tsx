@@ -49,7 +49,26 @@ const Issue = () => {
         navigate('/dashboard');
       })
       .catch((error: any) => {
-        console.log(error.response);
+        if (summary.trim().length < 5) {
+          alert('Summary must be at least 5 characters');
+        } else if (type.trim().length <= 0) {
+          alert('Type cannot be empty');
+        } else if (project.trim().length <= 0) {
+          alert('Project cannot be empty');
+        } else if (description.trim().length <= 0) {
+          alert('Description cannot be empty');
+        } else if (priority.trim().length <= 0) {
+          alert('Priority cannot be empty');
+        } else if (assignee.trim().length <= 0) {
+          alert('Assignee cannot be empty');
+        } else if (tags.trim().length <= 0) {
+          alert('Tags cannot be empty');
+        } else if (sprint.trim().length <= 0) {
+          alert('Sprint cannot be empty');
+        } else if (story.trim().length <= 0) {
+          alert('Story must be between 1-13');
+        }
+        console.log(error.response.data.message);
       });
   };
   const handleReset = (event: any) => {
@@ -126,7 +145,7 @@ const Issue = () => {
                     value={type}
                     onChange={(event) => setType(event.target.value)}>
                     <option disabled selected hidden value="">
-                      Select
+                      {t('Select')}
                     </option>
                     <option value="1">{t('BUG')}</option>
                     <option value="2">{t('TASK')}</option>

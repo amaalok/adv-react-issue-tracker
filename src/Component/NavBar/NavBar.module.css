@@ -25,7 +25,21 @@
 .user img {
   height: 50px;
   width: 50px;
+  cursor: pointer;
 }
 .user p {
   padding-top: 2%;
+}
+.info {
+  position: absolute;
+  background: #fff;
+  top: 8%;
+  left: 92%;
+  border: 1px solid #1d262d;
+  border-radius: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
