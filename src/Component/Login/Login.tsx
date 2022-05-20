@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -12,10 +12,8 @@ import classes from './Login.module.css';
 
 const Login = () => {
   const dispatch = useDispatch();
-  // const isAuth = useSelector((state: any) => state.auth.isAuthenticated);
   const { t } = useTranslation();
   const navigate = useNavigate();
-  // const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const emailHandler = (event: any) => {
@@ -42,6 +40,9 @@ const Login = () => {
         navigate('/');
       });
   };
+  if (localStorage.getItem('isAuth') === 'true') {
+    window.location.href = '/dashboard';
+  }
   return (
     <div className={classes.login}>
       <div className={classes.sidebar}>

@@ -29,13 +29,7 @@ const Language = (props: any) => {
   }, [t]);
 
   return (
-    <div
-      className={
-        'language-container'
-        // props.flag
-        //   ? `${classes['language-container']}`
-        //   : `${classes['language-false-container']}`
-      }>
+    <div className={'language-container'}>
       <DropdownButton
         variant="secondary"
         id={

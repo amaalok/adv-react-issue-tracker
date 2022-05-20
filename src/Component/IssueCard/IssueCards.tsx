@@ -13,40 +13,34 @@ type Props = {
 const IssueCards = ({ list, filterbypriority, filterbyassignee }: Props) => {
   const { t } = useTranslation();
   const [todoList, settodoList] = useState<Issue[]>([]);
-  const [doneList, setdoneList] = useState<Issue[]>([]);
+  const [testing, setTesting] = useState<Issue[]>([]);
   const [inProgressList, setinProgressList] = useState<Issue[]>([]);
-  const [blockedList, setblockedList] = useState<Issue[]>([]);
-  const [filter1, setFilter1] = useState<Issue[]>([]);
+  const [completed, setCompleted] = useState<Issue[]>([]);
+  const [filter, setFilter] = useState<Issue[]>([]);
 
   useEffect(() => {
-    setFilter1(list);
+    setFilter([...list]);
   }, [list]);
 
   useEffect(() => {
-    settodoList((pre) => filter1.filter((ele: any) => ele.status === 1));
-    setdoneList((pre) => filter1.filter((ele: any) => ele.status === 3));
-    setinProgressList((pre) => filter1.filter((ele: any) => ele.status === 2));
-    setblockedList((pre) => filter1.filter((ele: any) => ele.status === 4));
-  }, [filter1]);
+    settodoList(() => filter.filter((ele: any) => ele.status === 1));
+    setinProgressList(() => filter.filter((ele: any) => ele.status === 2));
+    setTesting(() => filter.filter((ele: any) => ele.status === 3));
+    setCompleted(() => filter.filter((ele: any) => ele.status === 4));
+  }, [filter]);
   useEffect(() => {
     if (filterbyassignee === '' && filterbypriority === '') {
-      setFilter1(list);
+      setFilter([...list]);
     } else if (filterbyassignee !== '' && filterbypriority === '') {
-      setFilter1(list.filter((ele: any) => ele.assignee.id == filterbyassignee));
+      setFilter([...list].filter((ele: any) => ele.assignee.id == filterbyassignee));
     } else if (filterbyassignee === '' && filterbypriority !== '') {
-      setFilter1(list.filter((ele: any) => ele.priority == filterbypriority));
+      setFilter([...list].filter((ele: any) => ele.priority == filterbypriority));
     } else if (filterbyassignee !== '' && filterbypriority !== '') {
-      setFilter1(list.filter((ele: any) => ele.assignee.id == filterbyassignee));
-      setFilter1(filter1.filter((ele: any) => ele.priority == filterbypriority));
+      setFilter([...list].filter((ele: any) => ele.assignee.id == filterbyassignee));
+      console.log(list, filter);
+      setFilter([...filter].filter((ele: any) => ele.priority == filterbypriority));
     }
   }, [filterbyassignee, filterbypriority]);
-  // useEffect(() => {
-  //   if (filterbypriority === '') {
-  //     setFilter1(list);
-  //   } else {
-  //     setFilter1(list.filter((ele: any) => ele.priority == filterbypriority));
-  //   }
-  // }, [filterbypriority]);
   return (
     <div className={classes.status}>
       <div className={classes['issue-list']}>
@@ -65,15 +59,15 @@ const IssueCards = ({ list, filterbypriority, filterbyassignee }: Props) => {
       </div>
       <div className={classes['issue-list']}>
         <p className={classes.type}>{t('TESTING')}</p>
-        {doneList &&
-          doneList.map((issue) => {
+        {testing &&
+          testing.map((issue) => {
             return <Card key={issue.id} issue={issue} />;
           })}
       </div>
       <div className={classes['issue-list']}>
         <p className={classes.type}>{t('COMPLETED')}</p>
-        {blockedList &&
-          blockedList.map((issue) => {
+        {completed &&
+          completed.map((issue) => {
             return <Card key={issue.id} issue={issue} />;
           })}
       </div>

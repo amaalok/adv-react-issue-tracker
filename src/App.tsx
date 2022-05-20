@@ -12,18 +12,15 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          {localStorage.getItem('isAuth') === 'true' ? (
-            <Route
-              path="/dashboard"
-              element={
-                <Protected isLoggedIn={localStorage.getItem('isAuth')}>
-                  <Dashboard />
-                </Protected>
-              }
-            />
-          ) : (
-            <Route path="/" element={<Login />} />
-          )}
+          <Route
+            path="/dashboard"
+            element={
+              <Protected isLoggedIn={localStorage.getItem('isAuth')}>
+                <Dashboard />
+              </Protected>
+            }
+          />
+          <Route path="/" element={<Login />} />
           <Route
             path="/dashboard"
             element={
