@@ -1,5 +1,5 @@
 {
-  "language": "Langue",
+  "LANGUAGE": "Langue",
   "Email": "E-mail",
   "Password": "Mot de passe",
   "Enter your email address": "Entrez votre adresse email",
@@ -42,5 +42,6 @@
   "TO DO": "FAIRE",
   "DEVELOPMENT": "DÉVELOPPEMENT",
   "TESTING": "TERMINÉ",
-  "COMPLETED": "ESSAI"
+  "COMPLETED": "ESSAI",
+  "Issue Tracker": "Traqueur d'incidents"
 }
