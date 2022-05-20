@@ -26,7 +26,6 @@ const Login = () => {
   };
   const onSubmit = (event: any) => {
     event.preventDefault();
-    console.log('heko');
     axios
       .post('https://hu-22-angular-mockapi-urtjok3rza-wl.a.run.app/auth/login', {
         email: email,
@@ -39,10 +38,9 @@ const Login = () => {
         dispatch(authActions.login());
       })
       .catch((error: any) => {
-        console.log(error.response.data['error']);
+        alert(error.response.data['error']);
         navigate('/');
       });
-    console.log('helo');
   };
   return (
     <div className={classes.login}>
